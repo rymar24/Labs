@@ -1,0 +1,61 @@
+=======================================    Сеть (LAN и WiFi) ===============================================
+Показать все сетевые интерфейсы (sudo ifconfig)
+Показать конфигурацию сетевого интерфейса enp0s3 (sudo ifconfig enp0s3)
+Деактивировать (опустить) интерфейс eth0 (sudo ifdown enp0s3)
+Активировать (поднять) интерфейс eth0 (sudo ifup enp0s3)
+
+=================================================================================
+Перейти в каталог dir1 ( cd /var/www/html )
+Создать файл index.html  с текстом Hello World (sudo echo "<H1 align='center'>Hello World"</H1> > /var/www/html/index.html)
+Скопировать index.html в forma.html (sudo cp index.html forma.html)
+Создать каталоп images (sudo mkdir /var/www/html/images)
+
+================================ Сервер FTP  =======================================
+Установить ftp-сервер и проверить работу (sudo apt install vsftpd)
+Открыть файл /etc/vsftpd.conf
+Разрешить пользователям осуществлять запись в директорию, 
+убрав символ # комментария для опции write_enable:
+Відкрити в редакторі mc  файл /etc/vsftpd.conf
+видалити символ # комментария для опціі write_enable
+видалити символ # комментария для опціі і замінити 022 на 000 : local_umask=000
+Добавити в будь-якому місці строчку в  /etc/vsftpd.conf :  (local_root=/var/www/html)
+Виконати команду та змінити права доступу до папки : (sudo chmod 777 -R /var/www/html)
+
+Перезапустить сервер (sudo service vsftpd restart)
+====================================================================================
+
+ Создаем директорию для хранилища и устанавливаем ей необходимые права
+sudo mkdir -p /srv/public
+sudo chown -R nobody:nogroup /srv/public
+sudo chmod -R 0775 /srv/public
+
+========== Server -  Microsoft Windows networks(SAMBA) =============================
+
+sudo apt  install samba samba-common system-config samba
+	
+Создаем новый файл конфигурации /etc/samba/smb.conf со следующим содержимым	
+ -------------------------------------------------
+[global]
+workgroup = WORKGROUP
+server string = Samba Server %v
+#netbios name = ubuntu1604
+security = user
+map to guest = bad user
+name resolve order = bcast host
+dns proxy = no
+bind interfaces only = yes
+
+[Public]
+   path = /srv/public
+   writable = yes
+   guest ok = yes
+   guest only = yes
+   read only = no
+   create mode = 0777
+   directory mode = 0777
+   force user = nobody
+ -----------------------------------------------  
+
+Перезапускаем сервис
+sudo service smbd restart 
+===========================================================================

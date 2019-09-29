@@ -1,0 +1,31 @@
+
+Зайти в управление базой данных - пароль 1	
+	mysql -u root -p	
+
+Просмотр доступных баз данных  ( SHOW DATABASES; )
+
+Открыть базу mysql : ( USE mysql; )
+
+Создать пользователя MySQL - user пароль 1 
+	CREATE USER 'user'@'%' IDENTIFIED BY '1';
+
+предоставить неограниченные права доступа
+	GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
+
+Запустить команду обновления:  ( FLUSH PRIVILEGES; )
+
+Создать новую базу данных   ( CREATE DATABASE tel09; )
+
+Выбор базы данных : ( USE tel09; )
+
+Просмотр таблиц, доступных в базе данных  ( SHOW TABLES;  )
+
+Скопировать файлы tel09.sql в каталог  /var/www/html/
+
+Добавить данные в базу tel09
+	( SOURCE /var/www/html/tel09.sql; )
+	
+Выполнить лабораторную sql-Lab.png
+
+
+	

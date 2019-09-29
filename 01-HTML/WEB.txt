@@ -1,0 +1,17 @@
+apt-get update
+
+Установить web-сервер (sudo apt-get -y install apache2)
+Проверить работу - открыть в браузере страницу...
+
+Установить ftp-сервер и проверить работу (sudo apt install vsftpd)
+Открыть файл /etc/vsftpd.conf
+Разрешить пользователям осуществлять запись в директорию, 
+убрав символ # комментария для опции write_enable:
+добавьте эту строку в /etc/vsftpd.conf :  (local_root=/var/www/html)
+Изменить права доступа к папке : (chmod 777 -R /var/www/html)
+
+Откурыть ftp-client (FileZillaPortable.exe) и соеденится с серевером
+
+Зайти на сайт -  https://www.ho.ua и зарегистрироваться...
+
+
